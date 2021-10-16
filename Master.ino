@@ -46,8 +46,8 @@ long timestamp[10];
 int Data_indicator[10][20];
 int Gateway_indicator[9];
 String sensortypes[10][20] = {"temperature", "humidity", "pressure", "Soil"};
-String tokens[10] = {"token2", ""};
-String  App_version[10] = {"c2tneiegul2q7quk38b0-dev1", ""};
+String tokens[10] = {"", ""};
+String  App_version[10] = {"", ""};
 
 
 
@@ -286,26 +286,24 @@ void SendMsgToCloud()
       mqttClient.poll();
 
 
-      for (int i = 0; i < 10; i++)
+      for (int j = 0; j < 20; j++)
       {
-        for (int j = 0; j < 20; j++)
+        if (Data_indicator[k][j] == 1)
         {
-          if (Data_indicator[i][j] == 1)
-          {
-            DynamicJsonDocument telemetry(128);
-            telemetry.createNestedObject();
-            telemetry[0]["timestamp"]    = timestamp[i];
-            telemetry[0][sensortypes[i][j]] = value[i][j];
-            String payload = telemetry.as<String>();
-            mqttClient.beginMessage(metricsPublishTopic);
-            mqttClient.print(payload.c_str());
-            mqttClient.endMessage();
-            Serial.println("Published on topic: " + metricsPublishTopic);
-            Serial.println("payload:  " + payload);
-          }
+          DynamicJsonDocument telemetry(128);
+          telemetry.createNestedObject();
+          telemetry[0]["timestamp"]    = timestamp[k];
+          telemetry[0][sensortypes[k][j]] = value[k][j];
+          String payload = telemetry.as<String>();
+          mqttClient.beginMessage(metricsPublishTopic);
+          mqttClient.print(payload.c_str());
+          mqttClient.endMessage();
+          Serial.println("Published on topic: " + metricsPublishTopic);
+          Serial.println("payload:  " + payload);
         }
       }
     }
+
     k++;
   }
   delay(2 * 1000);
