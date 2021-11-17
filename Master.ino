@@ -58,7 +58,7 @@ String  App_version[10] = {"", ""};
 #define BUFF_SIZE 1024 //size of data per msg
 
 //Data Structure
-enum msg_type {AskForSend, Ack, Data, Error, Stop};
+enum msg_type {AskForSend, Ack, Data, Error};
 
 struct header_S
 {
