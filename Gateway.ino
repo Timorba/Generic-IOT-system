@@ -21,13 +21,13 @@ long t2; //t2 - the time data is sent
 long t1 ; //t1 - the time we did the measurement
 
 
-//Definitions
+//Definitions 
 #define GATE_WAY_1 1   //define gateways
 #define STACK_SIZE 10  //max num of msg to save (stack)
 #define BUFF_SIZE 1024 //size of data per msg
 
 //Data Structures
-enum msg_type {AskForSend, Ack, Data, Error, Stop};
+enum msg_type {AskForSend, Ack, Data, Error};
 
 struct header_S
 {
