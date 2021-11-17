@@ -13,7 +13,7 @@ bool isBusy;
 float value[20];
 unsigned int start_time;
 unsigned int send_again;
-int timeout = 3 * 60 * 1000;
+int timeout = 30 * 60 * 1000;
 int timeToSendAgain = 2 * 1000;
 int sleeptime;
 long timestamp;
